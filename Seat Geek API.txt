@@ -1,0 +1,2 @@
+Seatgeek app secret: e815a4e78fdec148ded8eaf01b10197a08368f6ab7cd733e64c2685a7827e367 -
+client ID: MjQ1OTMwNzJ8MTYzNzcwMDU2MS4xNzA0MjYx
