@@ -1,1 +1,1 @@
-# Project-One
+# Boys Night Out randomizer
