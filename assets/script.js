@@ -17,9 +17,11 @@ function randomEvent(){
 
 function getApi() {
   // fetch request gets a list of all the repos for the node.js organization
-var date= document.querySelector("#datePicker").value
+var date= document.querySelector("#dateInput").value
+var city= document.querySelector("#cityInput").value
 
-  var requestUrl = "https://api.seatgeek.com/2/events&client_id=MjQ1OTMwNzJ8MTYzNzcwMDU2MS4xNzA0MjYx&datetime_utc="+date;
+
+  var requestUrl = "https://api.seatgeek.com/2/events?venue.city=" + city +"&datetime_utc=" + date + "&client_id=MjQ1OTMwNzJ8MTYzNzcwMDU2MS4xNzA0MjYx";
 
   fetch(requestUrl)
     .then(function (response) {
