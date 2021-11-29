@@ -47,7 +47,6 @@ var date= document.querySelector("#datePicker").value
       }
     });
 }
-=======
 // event listener for showing event results from location search
 
 var rerollBtn = document.querySelector('#rerollBtn');
@@ -60,5 +59,3 @@ rerollBtn.addEventListener("click", searchResults);
 // event listener for mapping route to event
 // needs mappingRoute function
 soundsGoodBtn.addEventListener("click", mappingRoute);
-
-
