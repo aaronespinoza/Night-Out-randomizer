@@ -1,24 +1,24 @@
-//Fetch Api
-
-var tableBody = document.getElementById('repo-table');
-var fetchButton = document.getElementById('fetch-button');
-
 //questions should be replaced by i
-function randomEvent(){
-    var random = Math.floor(Math.random()*questions.length);
+
+
+var venueAddress;
+function randomEvent(data){
+    var random = Math.floor(Math.random()*data.events.length);
     //questionsLocation.textContent= random.valueOf;
-    questionsLocation.textContent=questions[random];
+    venueAddress = data.events[random].venue.address+" "+
+    data.events[random].venue.state+", "+
+    data.events[random].venue.postal_code
+    console.log(venueAddress)
 }
 
-//variable for date
-//var dateInput=
-//variable for location
-//var cityInput=
-
-function getApi() {
-  // fetch request gets a list of all the repos for the node.js organization
-var date= document.querySelector("#dateInput").value
-var city= document.querySelector("#cityInput").value
+function searchResults(city, date) {
+  
+ var date= document.querySelector("#dateInput").value
+ var cityInput= document.querySelector("#datalistOptions").value
+//converts cities with spaces in the name to have a plus instead for url
+//var date= "2021-12-04"
+//var city= "new+york"
+var city= cityInput.split(' ').join('+');
 
 
   var requestUrl = "https://api.seatgeek.com/2/events?venue.city=" + city +"&datetime_utc=" + date + "&client_id=MjQ1OTMwNzJ8MTYzNzcwMDU2MS4xNzA0MjYx";
@@ -28,24 +28,28 @@ var city= document.querySelector("#cityInput").value
       return response.json();
     })
     .then(function (data) {
+      randomEvent(data)
       console.log(data)
       //Loop over the data to generate a table, each table row will have a link to the repo url
-      for (var i = 0; i < data.events.length; i++) {
-        // Creating elements, tablerow, tabledata, and anchor
-        var createTableRow = document.createElement('tr');
-        var tableData = document.createElement('td');
-        var link = document.createElement('a');
-
-        // Setting the text of link and the href of the link
-        link.textContent = data[i].datetime_utc;
-        link.href = data[i].html_url;
-
-        // Appending the link to the tabledata and then appending the tabledata to the tablerow
-        // The tablerow then gets appended to the tablebody
-        tableData.appendChild(link);
-        createTableRow.appendChild(tableData);
-        tableBody.appendChild(createTableRow);
-      }
+      
+        printResults(data.events[i]);
+        
+        
+      
     });
 }
+
+// event listener for showing event results from location search
+
+var rerollBtn = document.querySelector('#rerollBtn');
+var soundsGoodBtn = document.querySelector('#soundsGoodBtn');
+
+
+// needs searchResults function
+rerollBtn.addEventListener("click", searchResults);
+
+// event listener for mapping route to event
+// needs mappingRoute function
+soundsGoodBtn.addEventListener("click", mappingRoute);
+
 
