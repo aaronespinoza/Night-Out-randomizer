@@ -38,7 +38,10 @@ var city= cityInput.split(' ').join('+');
       
     });
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 // event listener for showing event results from location search
 
 var rerollBtn = document.querySelector('#rerollBtn');
@@ -51,5 +54,3 @@ rerollBtn.addEventListener("click", searchResults);
 // event listener for mapping route to event
 // needs mappingRoute function
 soundsGoodBtn.addEventListener("click", mappingRoute);
-
-
