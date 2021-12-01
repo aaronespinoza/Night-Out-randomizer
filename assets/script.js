@@ -1,3 +1,17 @@
+
+//Yelp restaurant randomizer
+var yelpAddress;
+function randomYelp(data, random){
+    
+    //questionsLocation.textContent= random.valueOf;
+    yelpAddress = data.businesses[random].location.address+" "+
+    data.businesses[random].location.state+", "+
+    data.businesses[random].location.zip_code
+    console.log(yelpAddress)
+}
+
+function searchResults(city) {
+
 //questions should be replaced by i
 var venueAddress;
 function randomEvent(data, random){
@@ -10,24 +24,42 @@ function randomEvent(data, random){
 }
 
 function searchResults(city, date) {
+
   
  //var date= document.querySelector("#dateInput").value;
 var cityInput= document.querySelector("#exampleDataList").value;
 //converts cities with spaces in the name to have a plus instead for url
+
 var date= "2021-12-05";
+
 //var city= "new+york"
 console.log(cityInput);
 var city= cityInput.split(' ').join('+');
 
 
+
+  var yelpUrl = "https://api.yelp.com/v3/businesses/search?term=restaurants&location=" + city;
+
+  fetch(yelpUrl, {
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer mk3i4VEQd51z903msKzH-_cj4YaqU6JADhfw4k1P1Ftj1o1MFdJ_GGBKVX8z19CVhbiKscgVsLxXub6OFPwofvwDzx1TXU2VoEqHkrbF0LTaJO4-A1ONf7V6f2mdYXYx"
+      }
+  })
+
   var requestUrl = "https://api.seatgeek.com/2/events?venue.city=" + city +"&datetime_utc=" + date + "&client_id=MjQ1OTMwNzJ8MTYzNzcwMDU2MS4xNzA0MjYx";
 
   fetch(requestUrl)
+
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
+
+      var randomYelp = Math.floor(Math.random()*data.businesses.length);
+
       var random = Math.floor(Math.random()*data.events.length);
+
       randomEvent(data, random)
       console.log(data, random)
       
@@ -38,11 +70,34 @@ var city= cityInput.split(' ').join('+');
     });
 }
 //print event result container
+
+var businessContainer= document.getElementById("yelpPop");
+
 var eventContainer= document.getElementById("eventPop");
+
 //PRINT RESULTS function
 function printResults(data, random){
   console.log(data);
   //Create elements
+
+  var yelpTitle = document.createElement("h3");
+  var yelpUrl= document.createElement("a");
+  var restaurantAddress= document.createElement("p");
+  //Set the text content
+  restaurantAddress.textContent= yelpAddress;
+  title.textContent= data.events[random].title;
+  yelpUrl.textContent = 'More Info';
+  //add a link to respective event on seatgeek
+  yelpUrl.setAttribute('href', data.events[random].url);
+  //add bootstrap classes
+  yelpUrl.classList.add('btn', 'btn-dark');
+
+  //Appending elements
+  eventContainer.append(yelpTitle);
+  eventContainer.append(yelpUrl);
+  eventContainer.append(restaurantAddress);
+}
+
   var title = document.createElement("h3");
   var eventUrl= document.createElement("a");
   var eventAddress= document.createElement("p");
@@ -148,3 +203,4 @@ var autocomplete1 = new google.maps.places.Autocomplete(input1, options1);
   
 var input2 = document.getElementById("to");
 var autocomplete2 = new google.maps.places.Autocomplete(input2, options2);
+
