@@ -1,3 +1,12 @@
+//datepicker
+//var dateButton = document.getElementById()
+$( function() {
+  $( "#datepicker" ).datepicker({
+    showOtherMonths: true,
+    selectOtherMonths: true
+  });
+} );
+
 //questions should be replaced by i
 var venueAddress;
 function randomEvent(data, random){
