@@ -1,51 +1,64 @@
-
-//Fetch Api
-
-var tableBody = document.getElementById('repo-table');
-var fetchButton = document.getElementById('fetch-button');
-
 //questions should be replaced by i
-function randomEvent(){
-    var random = Math.floor(Math.random()*questions.length);
+var venueAddress;
+function randomEvent(data, random){
+    
     //questionsLocation.textContent= random.valueOf;
-    questionsLocation.textContent=questions[random];
+    venueAddress = data.events[random].venue.address+" "+
+    data.events[random].venue.state+", "+
+    data.events[random].venue.postal_code
+    console.log(venueAddress)
 }
 
-//variable for date
-//var dateInput=
-//variable for location
-//var cityInput=
+function searchResults(city, date) {
+  
+ //var date= document.querySelector("#dateInput").value;
+var cityInput= document.querySelector("#exampleDataList").value;
+//converts cities with spaces in the name to have a plus instead for url
+var date= "2021-12-05";
+//var city= "new+york"
+console.log(cityInput);
+var city= cityInput.split(' ').join('+');
 
-function getApi() {
-  // fetch request gets a list of all the repos for the node.js organization
-var date= document.querySelector("#datePicker").value
 
-  var requestUrl = "https://api.seatgeek.com/2/events&client_id=MjQ1OTMwNzJ8MTYzNzcwMDU2MS4xNzA0MjYx&datetime_utc="+date;
+  var requestUrl = "https://api.seatgeek.com/2/events?venue.city=" + city +"&datetime_utc=" + date + "&client_id=MjQ1OTMwNzJ8MTYzNzcwMDU2MS4xNzA0MjYx";
 
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data)
-      //Loop over the data to generate a table, each table row will have a link to the repo url
-      for (var i = 0; i < data.events.length; i++) {
-        // Creating elements, tablerow, tabledata, and anchor
-        var createTableRow = document.createElement('tr');
-        var tableData = document.createElement('td');
-        var link = document.createElement('a');
-
-        // Setting the text of link and the href of the link
-        link.textContent = data[i].datetime_utc;
-        link.href = data[i].html_url;
-
-        // Appending the link to the tabledata and then appending the tabledata to the tablerow
-        // The tablerow then gets appended to the tablebody
-        tableData.appendChild(link);
-        createTableRow.appendChild(tableData);
-        tableBody.appendChild(createTableRow);
-      }
+      var random = Math.floor(Math.random()*data.events.length);
+      randomEvent(data, random)
+      console.log(data, random)
+      
+      printResults(data, random);
+        
+        
+      
     });
+}
+//print event result container
+var eventContainer= document.getElementById("eventPop");
+//PRINT RESULTS function
+function printResults(data, random){
+  console.log(data);
+  //Create elements
+  var title = document.createElement("h3");
+  var eventUrl= document.createElement("a");
+  var eventAddress= document.createElement("p");
+  //Set the text content
+  eventAddress.textContent= venueAddress;
+  title.textContent= data.events[random].title;
+  eventUrl.textContent = 'More Info';
+  //add a link to respective event on seatgeek
+  eventUrl.setAttribute('href', data.events[random].url);
+  //add bootstrap classes
+  eventUrl.classList.add('btn', 'btn-dark');
+
+  //Appending elements
+  eventContainer.append(title);
+  eventContainer.append(eventUrl);
+  eventContainer.append(eventAddress);
 }
 // event listener for showing event results from location search
 
@@ -58,6 +71,9 @@ rerollBtn.addEventListener("click", searchResults);
 
 // event listener for mapping route to event
 // needs mappingRoute function
+
+//soundsGoodBtn.addEventListener("click", mappingRoute);
+
 soundsGoodBtn.addEventListener("click", mappingRoute);
 
 
