@@ -15,7 +15,7 @@
 <body>
   <div class="jumbotron jumbotron-fluid custom-jumbotron">
     <div class="container">
-      <h1 class="display-4 text-center">Night Out Randomizer</h1>
+      <h1 class="display-4 text-center">Boys Night Out Randomizer</h1>
       <p class="lead text-center">You want to go out tonight with your friends but you have no idea what to do or where to go? Simply type your city onto the search bar and get a random event and restuarant near you where you'll get to enjoy your night with friends.</p>
     </div>
   </div>
@@ -66,14 +66,14 @@
           <form class="form-horizontal">
               <div class="form-group">
                   <label for="from" class="col-xs-2 control-label"><i class="far fa-dot-circle"></i></label>
-                  <div class="col-xs-4">
+                  <div class="col-xs-4 opacity-75 mb-3 bg-light shadow-sm rounded">
                       <input type="text" id="from" placeholder="Origin" class="form-control">
                   </div>
              </div>
              <div class="form-group">
               
                   <label for="to" class="col-xs-2 control-label"><i class="fas fa-map-marker-alt"></i></label>
-                  <div class="col-xs-4">
+                  <div class="col-xs-4 opacity-75 mb-3 bg-light shadow-sm rounded">
                       <input type="text" id="to" placeholder="Destination" class="form-control">
                   </div>
                 
@@ -81,12 +81,12 @@
                
           </form>
 
-          <div class="col-xs-offset-2 col-xs-10">
-              <button class="btn btn-info btn-lg " onclick="calcRoute();"><i class="fas fa-map-signs"></i></button>
+          <div class="col-xs-offset-2 d-flex justify-content-center col-xs-10">
+              <button class="btn btn-info btn-lg w-25 custom-GoBtn" onclick="calcRoute();"><i class="fas fa-map-signs"></i>Get Directions</button>
           </div>
       </div>
       <div class="container-fluid">
-          <div id="googleMap">
+          <div id="googleMap" class="w-75">
 
           </div>
           <div id="output">
