@@ -27,6 +27,16 @@
     margin-right: 10px;
 }
 
+.custom-GoBtn {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.output {
+  background-color: lightcoral;
+  color: greenyellow
+}
+
 body {
     background-image: url('./cory-gazaille-_L8bn696A8I-unsplash.jpg');
     background-repeat: no-repeat;
