@@ -13,14 +13,20 @@
     <title>Night Out</title>
 </head>
 <body>
-    <header class="text-center">
+  <div class="jumbotron jumbotron-fluid custom-jumbotron">
+    <div class="container">
+      <h1 class="display-4 text-center">Night Out Randomizer</h1>
+      <p class="lead text-center">You want to go out tonight with your friends but you have no idea what to do or where to go? Simply type your city onto the search bar and get a random event and restuarant near you where you'll get to enjoy your night with friends.</p>
+    </div>
+  </div>
+    <!-- <header class="text-center">
         <h1>Night Out Randomizer</h1>
         <p>By: The Boys</p>
-    </header>
-    <div class="container-lg mt-5">
+    </header> -->
+    <div class="container-lg mt-5 custom-container"> 
         <div class="row pb-4 mt-5">
             <div class="col-lg-6">
-              <div class="card">
+              <div class="card opacity-75 bg-light shadow p-3 mb-5 rounded">
                 <div class="card-body">
                   <h3 class="card-title" id="event-title">Event Title</h3>
                   <p class="card-text">Event information</p>
@@ -28,7 +34,7 @@
               </div>
             </div>
             <div class="col-lg-6">
-              <div class="card">
+              <div class="card opacity-75 bg-light shadow p-3 mb-5 rounded">
                 <div class="card-body">
                   <h3 class="card-title" id="restaurant-title">Restaurant</h3>
                   <p class="card-text">Restaurant information</p>
@@ -36,7 +42,7 @@
               </div>
             </div>
           </div>
-        <input class="form-control mb-3" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+        <input class="form-control opacity-75 mb-3 bg-light shadow-sm p-3 mb-5 rounded" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
             <datalist id="datalistOptions">
                 <option value="San Francisco">
                 <option value="New York">
@@ -45,9 +51,9 @@
                 <option value="Chicago">
             </datalist> 
           <div class="row justify-content-center">
-            <div class="col-sm-3">
-                <button type="button" class="btn btn-danger">Reroll</button>
-                <button type="button" class="btn btn-success">Sounds Good!</button>
+            <div class="col-sm-3 d-flex justify-content-center">
+                <button type="button" class="btn btn-danger w-50 custom-b1">Reroll</button>
+                <button type="button" class="btn btn-success w-50">Sounds Good!</button>
             </div>
           </div>
     </div>
