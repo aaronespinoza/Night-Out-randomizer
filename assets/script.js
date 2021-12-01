@@ -31,7 +31,7 @@ var city= cityInput.split(' ').join('+');
       randomEvent(data, random)
       console.log(data, random)
       
-      printResults(data, random);
+      printEventResults(data, random);
         
         
       
@@ -40,13 +40,14 @@ var city= cityInput.split(' ').join('+');
 //print event result container
 var eventContainer= document.getElementById("eventPop");
 //PRINT RESULTS function
-function printResults(data, random){
+function printEventResults(data, random){
   console.log(data);
   //Create elements
   var title = document.createElement("h3");
   var eventUrl= document.createElement("a");
   var eventAddress= document.createElement("p");
   //Set the text content
+  eventContainer.innerHTML= "";
   eventAddress.textContent= venueAddress;
   title.textContent= data.events[random].title;
   eventUrl.textContent = 'More Info';
@@ -60,6 +61,77 @@ function printResults(data, random){
   eventContainer.append(eventUrl);
   eventContainer.append(eventAddress);
 }
+
+//Yelp Randomizer
+//questions should be replaced by i
+var yelpAddress;
+function randomYelp(data, random){
+    
+    //questionsLocation.textContent= random.valueOf;
+    yelpAddress = data.businesses[random].location.address1+" "+
+    data.businesses[random].location.state+", "+
+    data.businesses[random].location.zip_code
+    console.log(yelpAddress)
+}
+
+function businessResults(city, date) {
+  
+ //var date= document.querySelector("#dateInput").value;
+var cityInput= document.querySelector("#exampleDataList").value;
+//converts cities with spaces in the name to have a plus instead for url
+var date= "2021-12-05";
+//var city= "new+york"
+console.log(cityInput);
+var city= cityInput.split(' ').join('+');
+
+
+  var yelpUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=" + city;
+
+  fetch(yelpUrl, {
+	'headers': {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer mk3i4VEQd51z903msKzH-_cj4YaqU6JADhfw4k1P1Ftj1o1MFdJ_GGBKVX8z19CVhbiKscgVsLxXub6OFPwofvwDzx1TXU2VoEqHkrbF0LTaJO4-A1ONf7V6f2mdYXYx'
+      }
+})
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var random = Math.floor(Math.random()*data.businesses.length);
+      randomYelp(data, random)
+      console.log(data, random)
+      
+      printResults(data, random);
+        
+        
+      
+    });
+}
+//print event result container
+var businessContainer= document.getElementById("yelpPop");
+//PRINT RESULTS function
+function printResults(data, random){
+  console.log(data);
+  //Create elements
+  var yelpTitle = document.createElement("h3");
+  var yelpUrl= document.createElement("a");
+  var businessAddress= document.createElement("p");
+  //Set the text content
+  businessContainer.innerHTML= "";
+  businessAddress.textContent= yelpAddress;
+  yelpTitle.textContent= data.businesses[random].name;
+  yelpUrl.textContent = 'More Info';
+  //add a link to respective event on seatgeek
+  yelpUrl.setAttribute('href', data.businesses[random].url);
+  //add bootstrap classes
+  yelpUrl.classList.add('btn', 'btn-dark');
+
+  //Appending elements
+  businessContainer.append(yelpTitle);
+  businessContainer.append(yelpUrl);
+  businessContainer.append(businessAddress);
+}
+
 // event listener for showing event results from location search
 
 var rerollBtn = document.querySelector('#rerollBtn');
@@ -67,7 +139,10 @@ var soundsGoodBtn = document.querySelector('#soundsGoodBtn');
 
 
 // needs searchResults function
-rerollBtn.addEventListener("click", searchResults);
+rerollBtn.addEventListener("click", function(){
+    searchResults()
+    businessResults()
+});
 
 // event listener for mapping route to event
 // needs mappingRoute function
@@ -147,4 +222,4 @@ var input1 = document.getElementById("from");
 var autocomplete1 = new google.maps.places.Autocomplete(input1, options1);
   
 var input2 = document.getElementById("to");
-var autocomplete2 = new google.maps.places.Autocomplete(input2, options2);
+var autocomplete2 = new google.maps.places.Autocomplete(input2, options2);``
