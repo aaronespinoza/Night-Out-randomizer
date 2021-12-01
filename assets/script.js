@@ -60,67 +60,6 @@ function printResults(data, random){
   eventContainer.append(eventUrl);
   eventContainer.append(eventAddress);
 }
-//Yelp restaurant randomizer
-var yelpAddress;
-function randomYelp(data, random){
-    
-    //questionsLocation.textContent= random.valueOf;
-    yelpAddress = data.businesses[random].venue.address+" "+
-    data.events[random].venue.state+", "+
-    data.events[random].venue.postal_code
-    console.log(yelpAddress)
-}
-
-function searchResults(city) {
-  
- //var date= document.querySelector("#dateInput").value;
-var cityInput= document.querySelector("#exampleDataList").value;
-//converts cities with spaces in the name to have a plus instead for url
-//var city= "new+york"
-console.log(cityInput);
-var city= cityInput.split(' ').join('+');
-
-
-  var yelpUrl = "https://api.yelp.com/v3/businesses/search?term=restaurants&location=" + city + "&client_id=MjQ1OTMwNzJ8MTYzNzcwMDU2MS4xNzA0MjYx";
-
-  fetch(yelpUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      var random = Math.floor(Math.random()*data.events.length);
-      randomEvent(data, random)
-      console.log(data, random)
-      
-      printResults(data, random);
-        
-        
-      
-    });
-}
-//print event result container
-var eventContainer= document.getElementById("yelpPop");
-//PRINT RESULTS function
-function printResults(data, random){
-  console.log(data);
-  //Create elements
-  var yelpTitle = document.createElement("h3");
-  var yelpUrl= document.createElement("a");
-  var restaurantAddress= document.createElement("p");
-  //Set the text content
-  restaurantAddress.textContent= yelpAddress;
-  title.textContent= data.events[random].title;
-  yelpUrl.textContent = 'More Info';
-  //add a link to respective event on seatgeek
-  yelpUrl.setAttribute('href', data.events[random].url);
-  //add bootstrap classes
-  yelpUrl.classList.add('btn', 'btn-dark');
-
-  //Appending elements
-  eventContainer.append(yelpTitle);
-  eventContainer.append(yelpUrl);
-  eventContainer.append(restaurantAddress);
-}
 
 // event listener for showing event results from location search
 
