@@ -6,7 +6,13 @@ Have you or your friends wanted to hang out but didn't have an idea on what to d
 
 ## Usage
 
-screenshots and instructions on how to use the site 
+- When you open up the page, scroll down to the search bar and type in your city and pick a date and click 'reroll'
+- Once clicked, you are shown a random event and restaurant. If you're unhappy with the selection, just hit reroll again and you'll get new results
+- If you're happy with the results, use the map below to set a route to the event or restaurant from your location .
+- After inputing your 'origin' and 'destination', click directions and you'll be given how many miles and how long the trip will be. 
+- And you're all set to have fun!
+https://user-images.githubusercontent.com/90587395/144363320-ad7f0578-c51e-4244-b442-04093d73bdd3.mp4
+
 
 ## Credits
 
