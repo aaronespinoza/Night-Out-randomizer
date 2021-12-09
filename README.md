@@ -23,3 +23,6 @@ These are the cloobaortators that brought you Boys Night Out randomizer:
 - Xuanan Yue, github: https://github.com/King23WL
 - Bernard Kung, github: https://github.com/beanardk
 - Derrick Alvarez, github: https://github.com/da-2005
+
+## Live URL
+https://beanardk.github.io/Night-Out-randomizer/
