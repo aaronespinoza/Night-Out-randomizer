@@ -19,8 +19,6 @@ function searchResults(city, date) {
 var date= document.querySelector("#datepicker").value;
 var cityInput= document.querySelector("#exampleDataList").value;
 //converts cities with spaces in the name to have a plus instead for url
-//var date= "2022-02-25";
-//var city= "new+york"
 console.log(cityInput);
 var city= cityInput.split(' ').join('+');
 
@@ -44,6 +42,7 @@ var city= cityInput.split(' ').join('+');
 }
 //print event result container
 var eventContainer= document.getElementById("eventPop");
+
 //PRINT RESULTS function
 function printEventResults(data, random){
   console.log(data);
@@ -147,6 +146,7 @@ var soundsGoodBtn = document.querySelector('#soundsGoodBtn');
 rerollBtn.addEventListener("click", function(){
     searchResults()
     businessResults()
+    calcRoute()
 });
 
 // event listener for mapping route to event
@@ -184,8 +184,11 @@ directionsDisplay.setMap(map);
 function calcRoute() {
     //create request
     var request = {
-        origin: document.getElementById("from").value,
-        destination: document.getElementById("to").value,
+        origin: venueAddress,
+        
+        destination: yelpAddress,
+        // origin: document.getElementById("from").value,
+        // destination: document.getElementById("to").value,
         travelMode: google.maps.TravelMode.DRIVING, //WALKING, BYCYCLING, TRANSIT
         unitSystem: google.maps.UnitSystem.IMPERIAL
     }
@@ -196,7 +199,7 @@ function calcRoute() {
 
             //Get distance and time
             const output = document.querySelector('#output');
-            output.innerHTML = "<div class='alert-info bg-light opacity-75 text-dark'>From: " + document.getElementById("from").value + ".<br />To: " + document.getElementById("to").value + ".<br /> Driving distance <i class='fas fa-road'></i> : " + result.routes[0].legs[0].distance.text + ".<br />Duration <i class='fas fa-hourglass-start'></i> : " + result.routes[0].legs[0].duration.text + ".</div>";
+            output.innerHTML = "<div class='alert-info bg-light opacity-75 text-dark'>From: " + venueAddress + ".<br />To: " + yelpAddress + ".<br /> Driving distance <i class='fas fa-road'></i> : " + result.routes[0].legs[0].distance.text + ".<br />Duration <i class='fas fa-hourglass-start'></i> : " + result.routes[0].legs[0].duration.text + ".</div>";
             //display route
             directionsDisplay.setDirections(result);
         } else {
@@ -209,6 +212,7 @@ function calcRoute() {
             output.innerHTML = "<div class='alert-danger'><i class='fas fa-exclamation-triangle'></i> Could not retrieve driving distance.</div>";
         }
     });
+    console.log("the calc route worked")
 
 }
 
