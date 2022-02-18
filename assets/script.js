@@ -9,9 +9,14 @@ function randomEvent(data, random){
     console.log(venueAddress)
 }
 
+//date dropdown function
+$( function() {
+  $( "#datepicker" ).datepicker();
+} );
+
 function searchResults(city, date) {
   
- //var date= document.querySelector("#dateInput").value;
+//var date= document.querySelector("#datepicker").value;
 var cityInput= document.querySelector("#exampleDataList").value;
 //converts cities with spaces in the name to have a plus instead for url
 var date= "2021-12-05";
@@ -20,7 +25,7 @@ console.log(cityInput);
 var city= cityInput.split(' ').join('+');
 
 
-  var requestUrl = "https://api.seatgeek.com/2/events?venue.city=" + city +"&datetime_utc=" + date + "&client_id=MjQ1OTMwNzJ8MTYzNzcwMDU2MS4xNzA0MjYx";
+  var requestUrl = "https://api.seatgeek.com/2/events?venue.city=" + city +"&datetime_utc=" + date + "&client_id=MjU3NjM4NjF8MTY0NTE0OTEzNy40MDQxMjU3";
 
   fetch(requestUrl)
     .then(function (response) {
@@ -149,7 +154,7 @@ rerollBtn.addEventListener("click", function(){
 
 //soundsGoodBtn.addEventListener("click", mappingRoute);
 
-soundsGoodBtn.addEventListener("click", mappingRoute);
+//soundsGoodBtn.addEventListener("click", mappingRoute);
 
 
 //javascript.js

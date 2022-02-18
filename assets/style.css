@@ -1,5 +1,13 @@
 * {
-    font-family: 'Bangers', cursive;
+    font-family: Arial, Helvetica, sans-serif
+}
+#ui-datepicker-div {
+  padding: 10px;
+}
+
+.ui-datepicker {
+  background-color: #e9ecef;
+  
 }
 
 #map {
