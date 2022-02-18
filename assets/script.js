@@ -1,5 +1,5 @@
 //questions should be replaced by i
-var venueAddress;
+let venueAddress;
 function randomEvent(data, random){
     
     //questionsLocation.textContent= random.valueOf;
@@ -7,7 +7,7 @@ function randomEvent(data, random){
     data.events[random].venue.state+", "+
     data.events[random].venue.postal_code
     console.log(venueAddress)
-}
+};
 
 //date dropdown function
 $( function() {
@@ -16,10 +16,10 @@ $( function() {
 
 function searchResults(city, date) {
   
-//var date= document.querySelector("#datepicker").value;
+var date= document.querySelector("#datepicker").value;
 var cityInput= document.querySelector("#exampleDataList").value;
 //converts cities with spaces in the name to have a plus instead for url
-var date= "2021-12-05";
+//var date= "2022-02-25";
 //var city= "new+york"
 console.log(cityInput);
 var city= cityInput.split(' ').join('+');
