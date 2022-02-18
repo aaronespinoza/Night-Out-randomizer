@@ -59,6 +59,8 @@ function printEventResults(data, random){
   eventUrl.setAttribute('href', data.events[random].url);
   //add bootstrap classes
   eventUrl.classList.add('btn', 'btn-dark');
+  eventAddress.classList.add('pointA');
+
 
   //Appending elements
   eventContainer.append(title);
@@ -129,6 +131,8 @@ function printResults(data, random){
   yelpUrl.setAttribute('href', data.businesses[random].url);
   //add bootstrap classes
   yelpUrl.classList.add('btn', 'btn-dark');
+  businessAddress.classList.add('pointB');
+
 
   //Appending elements
   businessContainer.append(yelpTitle);
@@ -179,16 +183,22 @@ var directionsDisplay = new google.maps.DirectionsRenderer();
 //bind the DirectionsRenderer to the map
 directionsDisplay.setMap(map);
 
+//stringify addresses
+
+const start= JSON.stringify(venueAddress);
+const end= JSON.stringify(yelpAddress);
+
+console.log(start,end)
 
 //define calcRoute function
 function calcRoute() {
     //create request
     var request = {
-        origin: venueAddress,
+        // origin: venueAddress,
         
-        destination: yelpAddress,
-        // origin: document.getElementById("from").value,
-        // destination: document.getElementById("to").value,
+        // destination: yelpAddress,
+        origin: document.querySelector("pointA").value,
+        destination: document.querySelector("pointB").value,
         travelMode: google.maps.TravelMode.DRIVING, //WALKING, BYCYCLING, TRANSIT
         unitSystem: google.maps.UnitSystem.IMPERIAL
     }
@@ -199,7 +209,7 @@ function calcRoute() {
 
             //Get distance and time
             const output = document.querySelector('#output');
-            output.innerHTML = "<div class='alert-info bg-light opacity-75 text-dark'>From: " + venueAddress + ".<br />To: " + yelpAddress + ".<br /> Driving distance <i class='fas fa-road'></i> : " + result.routes[0].legs[0].distance.text + ".<br />Duration <i class='fas fa-hourglass-start'></i> : " + result.routes[0].legs[0].duration.text + ".</div>";
+            output.innerHTML = "<div class='alert-info bg-light opacity-75 text-dark'>From: " + origin + ".<br />To: " + destination + ".<br /> Driving distance <i class='fas fa-road'></i> : " + result.routes[0].legs[0].distance.text + ".<br />Duration <i class='fas fa-hourglass-start'></i> : " + result.routes[0].legs[0].duration.text + ".</div>";
             //display route
             directionsDisplay.setDirections(result);
         } else {
