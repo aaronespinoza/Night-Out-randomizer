@@ -1,7 +1,8 @@
 //questions should be replaced by i
 let venueAddress;
 function randomEvent(data, random){
-    
+    //if an error is thrown in console there is likely
+    //no events on the selected date in the selected city
     //questionsLocation.textContent= random.valueOf;
     venueAddress = data.events[random].venue.address+" "+
     data.events[random].venue.state+", "+
@@ -194,11 +195,11 @@ console.log(start,end)
 function calcRoute() {
     //create request
     var request = {
-        // origin: venueAddress,
+        origin: venueAddress,
         
-        // destination: yelpAddress,
-        origin: document.querySelector("pointA").value,
-        destination: document.querySelector("pointB").value,
+        destination: yelpAddress,
+        // origin: document.querySelector("pointA").value,
+        // destination: document.querySelector("pointB").value,
         travelMode: google.maps.TravelMode.DRIVING, //WALKING, BYCYCLING, TRANSIT
         unitSystem: google.maps.UnitSystem.IMPERIAL
     }
